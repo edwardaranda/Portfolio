@@ -1,0 +1,482 @@
+/* ==========================================================================
+   Hero & marquee
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: clamp(7rem, 15vh, 10rem);
+  padding-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  will-change: transform;
+}
+
+.glow-a {
+  width: min(56vw, 820px);
+  aspect-ratio: 1;
+  top: -22%;
+  right: -8%;
+  background: radial-gradient(circle, rgba(255, 126, 178, 0.34), transparent 64%);
+}
+
+.glow-b {
+  width: min(46vw, 680px);
+  aspect-ratio: 1;
+  bottom: -18%;
+  left: -12%;
+  background: radial-gradient(circle, rgba(146, 116, 255, 0.24), transparent 66%);
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(244, 235, 226, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 235, 226, 0.055) 1px, transparent 1px);
+  background-size: 84px 84px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 56% 42%, #000 8%, transparent 78%);
+  mask-image: radial-gradient(ellipse 75% 65% at 56% 42%, #000 8%, transparent 78%);
+}
+
+.hero-watermark {
+  position: absolute;
+  right: -1.5vw;
+  top: 12vh;
+  font-size: clamp(8rem, 24vw, 28rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.07em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(244, 235, 226, 0.045);
+  user-select: none;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  flex: 1;
+}
+
+/* ── Hero copy ──────────────────────────────────────────────────────────── */
+.hero-copy {
+  position: relative;
+  z-index: 2;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: clamp(1.2rem, 2.5vw, 1.9rem);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.17em;
+  color: var(--muted);
+}
+
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 0 rgba(156, 240, 181, 0.5);
+  animation: pulse-dot 2.6s infinite;
+  flex-shrink: 0;
+}
+
+.hero-title {
+  font-size: clamp(3.6rem, 9.4vw, 10.4rem);
+  font-weight: 500;
+  line-height: 0.84;
+  letter-spacing: -0.058em;
+  margin-bottom: clamp(1.4rem, 2.6vw, 2.2rem);
+}
+
+.hero-title .line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.03em;
+}
+
+.hero-title .line > span {
+  display: block;
+  transform: translateY(115%);
+  transition: transform 1.15s var(--ease);
+}
+
+body.is-loaded .hero-title .line:nth-child(1) > span {
+  transform: translateY(0);
+  transition-delay: 0.12s;
+}
+body.is-loaded .hero-title .line:nth-child(2) > span {
+  transform: translateY(0);
+  transition-delay: 0.26s;
+}
+
+.hero-title em {
+  color: var(--pink);
+  margin-right: 0.06em;
+  letter-spacing: -0.02em;
+}
+
+.hero-title .outline {
+  font-weight: 500;
+  color: transparent;
+  -webkit-text-stroke: clamp(1px, 0.11vw, 1.6px) rgba(244, 235, 226, 0.55);
+}
+
+.hero-lede {
+  max-width: 48ch;
+  margin-bottom: clamp(1.6rem, 3vw, 2.2rem);
+  font-size: clamp(0.98rem, 1.25vw, 1.12rem);
+  line-height: 1.72;
+  color: rgba(244, 235, 226, 0.68);
+}
+
+.hero-lede strong {
+  color: var(--cream);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: clamp(1.5rem, 3vw, 2.2rem);
+}
+
+.hero-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(244, 235, 226, 0.36);
+}
+
+.hero-tools li {
+  position: relative;
+}
+
+.hero-tools li + li::before {
+  content: "";
+  position: absolute;
+  left: -0.62rem;
+  top: 50%;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(244, 235, 226, 0.28);
+  transform: translateY(-50%);
+}
+
+/* ── Hero visual ────────────────────────────────────────────────────────── */
+.hero-visual {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.9rem;
+}
+
+.portrait-wrap {
+  position: relative;
+  width: min(100%, 430px);
+  perspective: 900px;
+}
+
+.portrait-card {
+  position: relative;
+  margin: 0;
+  padding: 9px;
+  border-radius: 260px 260px 18px 18px;
+  background: linear-gradient(
+    155deg,
+    rgba(255, 179, 208, 0.55),
+    rgba(201, 182, 255, 0.16) 42%,
+    rgba(244, 235, 226, 0.08)
+  );
+  border: 1px solid rgba(244, 235, 226, 0.16);
+  box-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.85);
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.5s var(--ease);
+  transform-style: preserve-3d;
+}
+
+.portrait-card img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 250px 250px 10px 10px;
+  filter: saturate(0.94) contrast(1.02);
+}
+
+.portrait-card figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.55rem 0.7rem 0.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(244, 235, 226, 0.78);
+}
+
+.rotator {
+  position: absolute;
+  top: -22px;
+  left: -34px;
+  z-index: 4;
+  width: 118px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--pink);
+  color: #1a0e15;
+  box-shadow: 0 18px 40px -18px rgba(255, 179, 208, 0.8);
+}
+
+.rotator svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: spin 22s linear infinite;
+}
+
+.rotator text {
+  font-family: var(--font-mono);
+  font-size: 8.1px;
+  letter-spacing: 1.05px;
+  text-transform: uppercase;
+  fill: currentColor;
+}
+
+.rotator-star {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.float-card {
+  position: absolute;
+  left: -54px;
+  bottom: 34px;
+  z-index: 3;
+  width: 156px;
+  margin: 0;
+  padding: 6px 6px 8px;
+  background: var(--cream);
+  color: #16111c;
+  border-radius: 4px;
+  box-shadow: 0 24px 44px -18px rgba(0, 0, 0, 0.8);
+  rotate: -6deg;
+  transform: translate3d(0, var(--py, 0px), 0);
+  transition: scale 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  will-change: transform;
+}
+
+.float-card:hover {
+  scale: 1.05;
+  box-shadow: 0 30px 60px -18px rgba(0, 0, 0, 0.9);
+}
+
+.float-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.float-card figcaption {
+  padding-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.46rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(22, 17, 28, 0.55);
+}
+
+.spark {
+  position: absolute;
+  right: -12px;
+  top: 34%;
+  z-index: 4;
+  font-size: 1.5rem;
+  color: var(--gold);
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.35; transform: scale(0.85) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.12) rotate(18deg); }
+}
+
+.visual-note {
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(244, 235, 226, 0.36);
+  padding-right: 0.4rem;
+}
+
+.visual-note span {
+  color: var(--pink);
+}
+
+/* ── Hero footer ────────────────────────────────────────────────────────── */
+.hero-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-top: clamp(1.5rem, 4vh, 2.6rem);
+  margin-top: clamp(2rem, 5vh, 3.5rem);
+  border-top: 1px solid var(--line);
+}
+
+.hero-stats {
+  display: flex;
+  gap: clamp(1.4rem, 4vw, 3.6rem);
+}
+
+.hero-stats li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.stat-num {
+  font-size: clamp(1.55rem, 2.4vw, 2.15rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.stat-num sup {
+  font-size: 0.55em;
+  color: var(--pink);
+  vertical-align: super;
+  margin-left: 1px;
+}
+
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+}
+
+.scroll-cue {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.54rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(244, 235, 226, 0.45);
+  transition: color 0.3s;
+}
+
+.scroll-cue:hover {
+  color: var(--cream);
+}
+
+.scroll-cue-dot {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.scroll-cue-dot::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--pink);
+  animation: cue-bounce 2.2s var(--ease) infinite;
+}
+
+@keyframes cue-bounce {
+  0%, 100% { transform: translate(-50%, -80%); opacity: 0.5; }
+  50% { transform: translate(-50%, 30%); opacity: 1; }
+}
+
+/* ── Marquee strip ──────────────────────────────────────────────────────── */
+.marquee {
+  overflow: hidden;
+  padding: 1.05rem 0;
+  border-block: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.014);
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+  width: max-content;
+  animation: marquee 42s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee span {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(244, 235, 226, 0.55);
+  white-space: nowrap;
+}
+
+.marquee i {
+  font-style: normal;
+  font-size: 0.65rem;
+  color: var(--pink);
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
