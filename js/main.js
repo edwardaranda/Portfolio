@@ -430,11 +430,11 @@
 
   const filmItem = {
     type: "video",
-    src: "assets/web/video/coffee-shop.mp4",
-    poster: "assets/web/posters/coffee-shop.jpg",
-    title: "Coffee & Co.",
-    sub: "Character animation · Short film",
-    desc: "A character-led short film built entirely in Blender — a tiny corner café, a cat barista and a whole lot of warm light.",
+    src: "assets/web/video/spicy-noodles.mp4",
+    poster: "assets/web/posters/spicy-noodles.jpg",
+    title: "Spicy Noodle Cup",
+    sub: "Product film · 3D, 2D painting & sound",
+    desc: "A 16-second product film for a spicy noodle cup — modeled, hand-painted, animated and scored end to end in Mérida.",
   };
 
   let currentIndex = 0;

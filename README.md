@@ -7,8 +7,8 @@ Sitio estático de una sola página, responsive, sin frameworks ni build step: *
 ## Contenido
 
 - Hero editorial con retrato 3D y animaciones de entrada.
-- Featured film: corto animado *Coffee & Co.* con reproductor modal.
-- Galería de 13 proyectos con filtros (3D Product, Motion, Editorial, Branding), previews de video al hover y lightbox con navegación por teclado.
+- Proyecto destacado: *Spicy Noodle Cup*, product film de 16 s con reproductor modal.
+- Galería de 14 proyectos con filtros (3D Product, Motion, Editorial, Branding), previews de video al hover y lightbox con navegación por teclado.
 - About, experiencia (tomada del CV), estadísticas animadas, skills y software.
 - Contacto con email, teléfono, Behance y reloj local de Mérida.
 - Menú móvil a pantalla completa, cursor personalizado y soporte de `prefers-reduced-motion`.
@@ -23,7 +23,8 @@ Sitio estático de una sola página, responsive, sin frameworks ni build step: *
 │   ├── hero.css               # Hero, retrato, marquee
 │   ├── work.css               # Secciones, featured film, galería, quote
 │   ├── about.css              # About, experiencia, skills, contacto, lightbox
-│   └── responsive.css         # Breakpoints + reduced motion
+│   ├── responsive.css         # Breakpoints + reduced motion
+│   └── human.css              # Capa cálida: notas manuscritas, papel y detalles
 ├── js/
 │   └── main.js                # Interacciones (vanilla JS)
 ├── assets/
