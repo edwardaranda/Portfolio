@@ -1,0 +1,189 @@
+/* ==========================================================================
+   Human layer — warmth, handwriting and small imperfections
+   Loaded last: it tints and softens the system, never the layout.
+   ========================================================================== */
+
+:root {
+  --peach: #f2a48b;
+  --paper: #f9f2e9;
+  --paper-deep: #f0e2d2;
+}
+
+/* ── Handwritten asides ─────────────────────────────────────────────────── */
+.hand-note {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 1.15vw, 1.32rem);
+  line-height: 1.22;
+  letter-spacing: 0.005em;
+  color: var(--peach);
+  transform: rotate(-2.5deg);
+}
+
+.hand-note--hero {
+  align-self: flex-end;
+  max-width: 17rem;
+  margin-top: -0.2rem;
+  padding-right: 0.3rem;
+  text-align: right;
+  rotate: 2deg;
+  opacity: 0.9;
+}
+
+.film-stage {
+  position: relative;
+  padding-bottom: 2.4rem;
+}
+
+.hand-note--film {
+  position: absolute;
+  right: 1.2rem;
+  bottom: 0;
+  max-width: 15rem;
+  text-align: right;
+  rotate: -3deg;
+}
+
+.work-flag {
+  position: absolute;
+  top: 8px;
+  right: 14px;
+  z-index: 3;
+  font-size: 1rem;
+  color: var(--peach);
+  rotate: -5deg;
+  text-shadow: 0 1px 8px rgba(8, 7, 12, 0.7);
+  pointer-events: none;
+}
+
+.contact-cta-text {
+  max-width: 52ch;
+}
+
+.contact-cta .hand-note--sign {
+  max-width: none;
+  margin-top: 0.9rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.5rem;
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--peach);
+  rotate: -4deg;
+  opacity: 0.9;
+}
+
+/* ── Softer edges on the featured frame ─────────────────────────────────── */
+.film-frame {
+  border-color: rgba(244, 235, 226, 0.2);
+  box-shadow: 0 60px 120px -70px rgba(0, 0, 0, 0.9),
+    0 0 80px -50px rgba(242, 164, 139, 0.35);
+}
+
+.chip,
+.film-tags li {
+  border-color: rgba(244, 235, 226, 0.16);
+}
+
+/* ── Work grid: hands made these, so nothing is perfectly square ────────── */
+.work-media {
+  transition: transform 0.7s var(--ease);
+}
+
+.work-card:nth-child(4n + 2) .work-media {
+  border-radius: 3px 3px 14px 3px;
+}
+
+.work-card:nth-child(4n + 3) .work-media {
+  border-radius: 16px 16px 4px 16px;
+}
+
+.work-link:hover .work-media {
+  transform: rotate(-0.35deg);
+}
+
+.work-badge {
+  border-radius: 4px;
+  letter-spacing: 0.07em;
+}
+
+.work-info p {
+  text-transform: none;
+  letter-spacing: 0.01em;
+  font-size: 0.63rem;
+  color: rgba(244, 235, 226, 0.46);
+}
+
+/* ── Warmer paper in the light sections ─────────────────────────────────── */
+.light {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(ellipse 70% 50% at 86% -6%, rgba(255, 179, 208, 0.2), transparent 62%),
+    radial-gradient(ellipse 62% 44% at 2% 104%, rgba(242, 164, 139, 0.16), transparent 66%);
+}
+
+.light .section-desc {
+  color: rgba(22, 17, 28, 0.63);
+}
+
+.light .tag-list li {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* ── Contact: a warmer room ─────────────────────────────────────────────── */
+.contact-glow {
+  background: radial-gradient(circle, rgba(242, 164, 139, 0.22), transparent 64%);
+}
+
+.contact-cta p {
+  color: rgba(244, 235, 226, 0.6);
+}
+
+/* ── Buttons and small chrome ──────────────────────────────────────────── */
+.btn-primary:hover {
+  background: var(--peach);
+  box-shadow: 0 14px 34px -14px rgba(242, 164, 139, 0.7);
+}
+
+.btn-ghost:hover {
+  border-color: var(--peach);
+  color: var(--peach);
+}
+
+.marquee i {
+  color: var(--peach);
+}
+
+.quote-inner blockquote em {
+  color: var(--peach);
+}
+
+.quote-sign {
+  letter-spacing: 0.14em;
+}
+
+::selection {
+  background: var(--peach);
+}
+
+/* ── Keep the asides out of the way on small screens ───────────────────── */
+@media (max-width: 900px) {
+  .hand-note--film {
+    position: static;
+    max-width: none;
+    margin-top: 0.9rem;
+    text-align: left;
+    rotate: 0deg;
+  }
+
+  .film-stage {
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .hand-note--hero {
+    display: none;
+  }
+}
